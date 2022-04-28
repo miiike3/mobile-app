@@ -7,11 +7,10 @@ import axios from 'axios';
 const RateSong = ({ onAdd }) => {
 
   const [rating, setRating] = useState(5);
+  const [song, setTitle] = useState("");
 
   const userid = 1; 
   const username = "mike";
-  const song = "Grief";
-  const artist = "Earl Sweatshirt"
 
 
   const onSubmit = (e) => {
@@ -20,16 +19,21 @@ const RateSong = ({ onAdd }) => {
       'username' : userid,
       'song' : song,
       'rating' : rating};   
-    axios.post("https://mandm-reviews.herokuapp.com/api/songs/", item)
+    axios.post("https://mandm-reviews.herokuapp.com/api/ratings/", item)
+    .then(alert("Rating Submitted"))
     .catch((err) => alert(err));       
   };
 
   return(
     <View style={{ flex: 1, padding: 24}}>
       <Text style={{fontSize: 50}}>Rate Song:</Text> 
-      <Text style={{fontSize: 25}}>{song} by {artist}</Text>
+      <Text style={{fontSize: 25}}>{song} </Text>
       <View>
         <Text style={{fontSize: 25}}>Current User: {username}</Text>
+        <TextInput
+          style={styles.input}
+          onChangeText = {currentSong => setTitle(currentSong)}
+          placeholder='Song Name' />
         <TextInput 
           style={styles.input}
           keyboardType="phone-pad"

@@ -1,17 +1,9 @@
-import { StatusBar } from 'expo-status-bar';
-import React, { StyleSheet, Text, View, Button } from 'react-native';
+import React, { Text, View, Button } from 'react-native';
 import { useEffect, useState } from 'react';
 import { DataTable } from 'react-native-paper';
 
 const SongList = ({ onAdd }) => {
-    const [title, setTitle] = useState("");
-    const [artist, setArtist] = useState("");
     const [songs, setSongs] = useState([]);
-    const [users, setUsers] = useState([]);
-    const [rating, setRating] = useState(0);
-    const [ratings, setRatings] = useState([])
-    const [user, currentUser] = useState([]);
-    const [song, currentSong] = useState([]);
     const [isLoading, setLoading] = useState(true);
   
     useEffect(() => {
@@ -38,7 +30,7 @@ const SongList = ({ onAdd }) => {
               justifyContent: "space-between",
             }}
           >
-        <Button title="Refresh" onPress={refreshSongs()}>Refresh</Button>
+        {/* <Button title="Refresh" onPress={refreshSongs()}>Refresh</Button> */}
             <DataTable>
               <DataTable.Header>
                 <DataTable.Title>Song</DataTable.Title>

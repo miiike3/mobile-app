@@ -16,14 +16,14 @@
       let item = {
         'title': title, 
         'artist': artist};   
-      axios.put('https://mandm-reviews.herokuapp.com/api/songs/${title}', item)
+      axios.put(`https://mandm-reviews.herokuapp.com/api/songs/${title}/`, item)
       .catch((err) => alert(err));       
     };
   
     const onDelete = (item) => {
       axios.delete(`https://mandm-reviews.herokuapp.com/api/songs/${item}/`)
       .catch((err) => alert(err));
-    }
+    };
 
     return(
       <View style={{ flex: 1, padding: 24}}>
@@ -39,12 +39,14 @@
             placeholder={artistname} />
           <Button
             onPress={onSubmit}
-          ><Text style={{fontSize: 25}}>Edit Song</Text>
+          ><Text style={{fontSize: 25}}>Save Edit</Text>
           </Button>
-          <Button
-            onPress={onDelete(title)}
-          ><Text style={{fontSize: 25}}>Delete Song</Text>
-          </Button>
+          <View>
+            <Button
+              onPress={onDelete(title)}
+            ><Text style={{fontSize: 25}}>Delete Song</Text>
+            </Button>
+          </View>
         </View>
       </View>
     );
