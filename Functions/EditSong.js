@@ -20,6 +20,11 @@
       .catch((err) => alert(err));       
     };
   
+    const onDelete = (item) => {
+      axios.delete(`https://mandm-reviews.herokuapp.com/api/songs/${item}/`)
+      .catch((err) => alert(err));
+    }
+
     return(
       <View style={{ flex: 1, padding: 24}}>
         <Text style={{fontSize: 50}}>Edit Song</Text> 
@@ -35,6 +40,10 @@
           <Button
             onPress={onSubmit}
           ><Text style={{fontSize: 25}}>Edit Song</Text>
+          </Button>
+          <Button
+            onPress={onDelete(title)}
+          ><Text style={{fontSize: 25}}>Delete Song</Text>
           </Button>
         </View>
       </View>

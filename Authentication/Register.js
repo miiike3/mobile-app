@@ -32,10 +32,26 @@ const handleSubmitButton = () => {
 return (
 <View>
     <TextInput
+    style={{
+        borderColor: "gray",
+        width: "100%",
+        borderWidth: 1,
+        borderRadius: 10,
+        padding: 10,
+        fontSize: 25,
+        }}
     onChangeText={(username) => setUsername(username)}
     placeholder = "text"
     />
     <TextInput
+    style={{
+        borderColor: "gray",
+        width: "100%",
+        borderWidth: 1,
+        borderRadius: 10,
+        padding: 10,
+        fontSize: 25,
+        }}
     onChangeText={(password) => setPassword(password)}
     placeholder = "text"
     />

@@ -7,14 +7,16 @@ import { createBottomTabNavigator} from "@react-navigation/bottom-tabs";
 import AddSong from './Functions/AddSong';
 import EditSong from './Functions/EditSong';
 import RateSong from './Functions/RateSong';
+import SongList from './Functions/songlist';
 
 const Tab = createBottomTabNavigator();
 export default function TabPage() {
     return (
             <Tab.Navigator>
-                <Tab.Screen name = "AddSong" component = {AddSong} />
-                <Tab.Screen name = "RateSong" component = {RateSong} />
-                <Tab.Screen name = "EditSong" component = {EditSong} />
+                <Tab.Screen name = "Song List" component = {SongList} />
+                <Tab.Screen name = "Add Song" component = {AddSong} />
+                <Tab.Screen name = "Rate Song" component = {RateSong} />
+                <Tab.Screen name = "Edit/Delete Song" component = {EditSong} />
             </Tab.Navigator>
     )
 }
