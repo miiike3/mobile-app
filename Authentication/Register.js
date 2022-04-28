@@ -8,10 +8,11 @@ import {
     TextInput,
     Button,
 } from "react-native";
+import axios from 'axios';
 
 export default function Signup({navigation}) {
-const [username, setUsername] = useState('');
-const [password, setPassword] = useState('');
+const [Username, setUsername] = useState('');
+const [Password, setPassword] = useState('');
 const [errortext, setErrortext] = useState('');
 const [isRegistrationSuccess, setIsRegistrationSuccess] = useState('false');
 
@@ -20,13 +21,29 @@ const passwordInputRef = createRef();
 
 const handleSubmitButton = () => {
     setErrortext('');
-    if (!username) {
+    if (!Username) {
         alert('Enter a username');
     }
-    if (!password) {
+    if (!Password) {
         alert('Enter a password')
     }
-    navigation.navigate('Auth', {screen: 'Login'})
+    var item = {
+        "username": Username,
+        "password": Password,
+    }
+
+    axios.post("http://localhost:8000/api/register/", item)
+    .then((res) => {
+        alert("Registration Successful.")
+        navigation.navigate('Auth', {screen: 'Login'})
+    })
+    .catch((error) => {
+        console.error(error)
+        alert("Registration Unsuccessful")
+        navigation.navigate('Welcome')
+
+    })
+
 };
 
 return (

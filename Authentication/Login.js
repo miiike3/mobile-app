@@ -7,11 +7,14 @@ import {
     Image,
     TextInput,
     Button,
+    AsyncStorage,
 } from "react-native";
+import axios from "axios";
+import jwt from 'jwt-decode';
 
 export default function Login({navigation}) {
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
+    const [Username, setUsername] = useState('');
+    const [Password, setPassword] = useState('');
     const [errortext, setErrortext] = useState('');
     const [isRegistrationSuccess, setIsRegistrationSuccess] = useState('false');
 
@@ -19,15 +22,35 @@ export default function Login({navigation}) {
     const passwordInputRef = createRef();
 
     const handleSubmitButton = () => {
-        setErrortext('');
-        if (!username) {
-            alert('Enter a username');
-        }
-        if (!password) {
-            alert('Enter a password')
-        }
+    setErrortext('');
+    if (!Username) {
+        alert('Enter a username');
+    }
+    if (!Password) {
+        alert('Enter a password');
+    }
+    var item = {
+        "username": Username,
+        "password": Password,
+    }
+    axios.post("http://localhost:8000/api/token/", item)
+    .then((res) => {
+        /*let token = jwt(res.data.access)
+        let stringid = (token.user_id)
+        AsyncStorage.setItem('user_id', stringid)
+        */
+        AsyncStorage.setItem('username', Username)
+        alert("Login Successful.");
         navigation.navigate('Tab')
+    })
+    .catch((error) => {
+        console.error(error)
+        alert("Login Unsuccessful")
+        navigation.navigate('Welcome')
+
+    })
     };
+
 
     return (
     <View>
