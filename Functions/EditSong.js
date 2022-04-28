@@ -7,8 +7,6 @@
   
     const [title, setTitle] = useState("");
     const [artist, setArtist] = useState("");
-    const songname = "Grief";
-    const artistname = "Earl Sweatshirt"
   
   
     const onSubmit = (e) => {
@@ -32,21 +30,19 @@
           <TextInput
             style={styles.input}
             onChangeText = {currentSong => setTitle(currentSong)}
-            placeholder={songname} />
+            placeholder= "Enter Song Name" />
           <TextInput
             style={styles.input}
             onChangeText = {currentArtist => setArtist(currentArtist)}
-            placeholder={artistname} />
+            placeholder= "Enter Artist Name" />
           <Button
             onPress={onSubmit}
           ><Text style={{fontSize: 25}}>Save Edit</Text>
           </Button>
-          <View>
-            <Button
+            {/* <Button
               onPress={onDelete(title)}
             ><Text style={{fontSize: 25}}>Delete Song</Text>
-            </Button>
-          </View>
+            </Button> */}
         </View>
       </View>
     );

@@ -4,6 +4,7 @@ import { DataTable } from 'react-native-paper';
 
 const SongList = ({ onAdd }) => {
     const [songs, setSongs] = useState([]);
+    const [ratings, setRatings] = useState([]);
     const [isLoading, setLoading] = useState(true);
   
     useEffect(() => {
@@ -16,7 +17,30 @@ const SongList = ({ onAdd }) => {
         .then((json) => setSongs(json))
         .catch((err) => console.error(err))
         .finally(() => setLoading(false));
+      fetch("https://mandm-reviews.herokuapp.com/api/ratings/")
+        .then((res) => res.json())
+        .then((json) => setRatings(json))
+        .catch((err) => console.error(err))
+        .finally(() => setLoading(false));
     };
+
+    function avgrating(title)  {
+        let lst = [];
+        lst = ratings.filter(item => item.song == title);
+        let lstrate = [];
+        for (let rate in lst) {
+          console.log(rate.rating)
+          lstrate.push(rate.rating);
+        };
+        let len = 1 ;
+        if (lst.length != 0) {
+          len = lst.length;
+        };
+        let total = 0
+        total = lstrate.reduce((a,b) => a+b, 0)
+        console.log(lst, lstrate, total, len)
+        return total/len
+    }
   
     return (
       <View style={{ flex: 1, padding: 24}}>
