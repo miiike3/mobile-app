@@ -21,6 +21,7 @@ class RatingView(viewsets.ModelViewSet):
     permission_class = [
         permissions.AllowAny
     ]
+     
 
 class CustomUserCreate(APIView):
     permission_classes = [AllowAny]
