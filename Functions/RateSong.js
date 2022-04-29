@@ -10,10 +10,9 @@ const RateSong = ({ onAdd }) => {
   const [song, setTitle] = useState("");
   const [ratings, setRatings] = useState([]);
 
-  const userid = 1;
-  const username = "mike"
-  // const userid = AsyncStorage.getItem('user_id');
-  // const username = AsyncStorage.getItem('username');
+
+  const userid = AsyncStorage.getItem('user_id');
+  const username = AsyncStorage.getItem('username');
 
   useEffect(() => {
     refreshSongs();
