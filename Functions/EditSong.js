@@ -14,12 +14,12 @@
       let item = {
         'title': title, 
         'artist': artist};   
-      axios.put(`https://mandm-reviews.herokuapp.com/api/songs/${title}/`, item)
+      axios.put(`http://localhost:8000/api/songs/${title}/`, item)
       .catch((err) => alert(err));       
     };
   
     const onDelete = (item) => {
-      axios.delete(`https://mandm-reviews.herokuapp.com/api/songs/${item}/`)
+      axios.delete(`http://localhost:8000/api/songs/${item}/`)
       .catch((err) => alert(err));
     };
 

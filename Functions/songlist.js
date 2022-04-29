@@ -12,12 +12,12 @@ const SongList = ({ onAdd }) => {
     }, []);
   
     const refreshSongs = () => {
-      fetch("https://mandm-reviews.herokuapp.com/api/songs/")
+      fetch("http://localhost:8000/api/songs/")
         .then((res) => res.json())
         .then((json) => setSongs(json))
         .catch((err) => console.error(err))
         .finally(() => setLoading(false));
-      fetch("https://mandm-reviews.herokuapp.com/api/ratings/")
+      fetch("http://localhost:8000/api/ratings/")
         .then((res) => res.json())
         .then((json) => setRatings(json))
         .catch((err) => console.error(err))
