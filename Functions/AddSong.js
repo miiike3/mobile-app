@@ -14,8 +14,7 @@ const AddSong = ({ onAdd }) => {
     e.preventDefault();
     let item = {
       'title': title, 
-      'artist': artist,
-      'rating_average': rating};   
+      'artist': artist};   
     axios.post("http://localhost:8000/api/songs/", item)
     .then((res) => alert("Song Submitted."))
     .catch((err) => alert(err));   
@@ -33,10 +32,6 @@ const AddSong = ({ onAdd }) => {
           style={styles.input}
           onChangeText = {currentArtist => setArtist(currentArtist)}
           placeholder='Artist' />
-        <TextInput
-          style={styles.input}
-          onChangeText = {currentRating => setRating(currentRating)}
-          placeholder='Rating' />
         <Button
           onPress={onSubmit}
         ><Text style={{fontSize: 25}}>Add New Song</Text>

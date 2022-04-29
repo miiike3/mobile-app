@@ -13,13 +13,7 @@ class UserView(viewsets.ModelViewSet):
 class SongView(viewsets.ModelViewSet):
     serializer_class = SongSerializer
     queryset = Song.objects.all()
-    for i in queryset:
-        lst = list(Rating.objects.filter(song__title = i.title).values_list('rating', flat = 'true'))
-        length = 1
-        if len(lst) != 0:
-            length = len(lst)
-        i.rating_average = sum(lst)/length
-        i.save()
+
 
 class RatingView(viewsets.ModelViewSet):
     serializer_class = RatingSerializer

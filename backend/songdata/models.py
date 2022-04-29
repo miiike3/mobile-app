@@ -11,7 +11,13 @@ class CustomUser(AbstractUser):
 class Song(models.Model):
     title = models.CharField(primary_key = True, max_length = 50)
     artist = models.CharField(max_length = 50)
-    rating_average = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(5)], default=0)
+    def rating_average(self):
+        lst = list(Rating.objects.filter(song__title = self.title).values_list('rating', flat = 'true'))
+        length = 1
+        if len(lst) != 0:
+            length = len(lst)
+        rating_average = sum(lst)/length
+        return rating_average
     def __str__(self):
         return self.title
 

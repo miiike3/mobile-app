@@ -49,7 +49,7 @@ const RateSong = ({ onAdd }) => {
     else {
       for (let i in lst) {
         axios.put(`http://localhost:8000/api/ratings/${i.rating_id}/`, item)
-        .then(alert("Rating Changes"))
+        .then(alert("Rating Changed"))
         .catch((err) => alert(err));
     }    
   }
