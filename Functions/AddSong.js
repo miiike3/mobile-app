@@ -8,6 +8,7 @@ const AddSong = ({ onAdd }) => {
   const [title, setTitle] = useState("");
   const [artist, setArtist] = useState("");
   const [rating, setRating] = useState(0);
+  const [songs, setSongs] = useState([]);
 
 
   const onSubmit = (e) => {
@@ -17,7 +18,15 @@ const AddSong = ({ onAdd }) => {
       'artist': artist};   
     axios.post("http://localhost:8000/api/songs/", item)
     .then((res) => alert("Song Submitted."))
+    .then(() => refreshSongs())
     .catch((err) => alert(err));   
+  };
+
+  const refreshSongs = () => {
+    fetch("http://localhost:8000/api/songs/")
+      .then((res) => res.json())
+      .then((json) => setSongs(json))
+      .catch((err) => console.error(err))
   };
 
   return(

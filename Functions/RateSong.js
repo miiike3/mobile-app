@@ -9,6 +9,7 @@ const RateSong = ({ onAdd }) => {
   const [rating, setRating] = useState(5);
   const [song, setTitle] = useState("");
   const [ratings, setRatings] = useState([]);
+  const [songs, setSongs] = useState([]);
 
 
   const userid = AsyncStorage.getItem('user_id');
@@ -22,13 +23,11 @@ const RateSong = ({ onAdd }) => {
     fetch("http://localhost:8000/api/songs/")
       .then((res) => res.json())
       .then((json) => setSongs(json))
-      .catch((err) => console.error(err))
-      .finally(() => setLoading(false));
+      .catch((err) => console.error(err));
     fetch("http://localhost:8000/api/ratings/")
       .then((res) => res.json())
       .then((json) => setRatings(json))
-      .catch((err) => console.error(err))
-      .finally(() => setLoading(false));
+      .catch((err) => console.error(err));
   };
 
   const onSubmit = (e) => {
@@ -38,7 +37,7 @@ const RateSong = ({ onAdd }) => {
     lst = lst.filter(item => item.song == song);
     if (lst.length == 0) {
       let item = {
-        'username' : userid,
+        'username' : 1,
         'song' : song,
         'rating' : rating};   
       axios.post("http://localhost:8000/api/ratings/", item)
