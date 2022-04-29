@@ -19,7 +19,7 @@ const RateSong = ({ onAdd }) => {
       'username' : userid,
       'song' : song,
       'rating' : rating};   
-    axios.post("https://mandm-reviews.herokuapp.com/api/ratings/", item)
+    axios.post("http://localhost:8000/api/ratings/", item)
     .then(alert("Rating Submitted"))
     .catch((err) => alert(err));       
   };

@@ -16,7 +16,7 @@ const AddSong = ({ onAdd }) => {
       'title': title, 
       'artist': artist,
       'rating_average': rating};   
-    axios.post("https://mandm-reviews.herokuapp.com/api/songs/", item)
+    axios.post("http://localhost:8000/api/songs/", item)
     .then((res) => alert("Song Submitted."))
     .catch((err) => alert(err));   
   };
