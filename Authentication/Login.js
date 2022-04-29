@@ -36,9 +36,7 @@ export default function Login({navigation}) {
     axios.post("http://localhost:8000/api/token/", item)
     .then((res) => {
         let token = jwt(res.data.access)
-        alert(token)
         let stringid = token.user_id
-        alert(stringid)
         AsyncStorage.setItem('user_id', stringid.toString())
         AsyncStorage.setItem('username', Username)
         alert("Login Successful.");
