@@ -20,6 +20,7 @@ export default function Login({navigation}) {
 
     const usernameInputRef = createRef();
     const passwordInputRef = createRef();
+    const stringid = '';
 
     const handleSubmitButton = () => {
     setErrortext('');
@@ -29,6 +30,15 @@ export default function Login({navigation}) {
     if (!Password) {
         alert('Enter a password');
     }
+
+    const storeData = async (key, value) => {
+    try {
+      await AsyncStorage.setItem(key, value);
+    } catch (error) {
+      console.log(error);
+    }
+    };
+
     var item = {
         "username": Username,
         "password": Password,
@@ -37,8 +47,10 @@ export default function Login({navigation}) {
     .then((res) => {
         let token = jwt(res.data.access)
         let stringid = token.user_id
-        AsyncStorage.setItem('user_id', stringid.toString())
-        AsyncStorage.setItem('username', Username)
+        let user_id = stringid.toString()
+        storeData('username', Username)
+        storeData('user_id', user_id)
+
         alert("Login Successful.");
         navigation.navigate('Tab')
     })

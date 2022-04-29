@@ -1,4 +1,4 @@
-import React, { Text, View, Button, Pressable, AsyncStorage } from 'react-native';
+import React, { Text, View, Button, Pressable, ScrollView, AsyncStorage } from 'react-native';
 import { useEffect, useState } from 'react';
 import { DataTable } from 'react-native-paper';
 import axios from 'axios';
@@ -30,7 +30,7 @@ const SongList = ({ onAdd }) => {
     };
 
     return (
-      <View style={{ flex: 1, padding: 24}}>
+      <ScrollView style={{ flex: 1, padding: 24}}>
         {isLoading ? (
           <Text>Loading...</Text>
         ) : (
@@ -68,7 +68,7 @@ const SongList = ({ onAdd }) => {
               </DataTable>
       </View>
     )}
-    </View>
+    </ScrollView>
     );
 }
 

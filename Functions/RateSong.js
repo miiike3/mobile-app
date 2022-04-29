@@ -10,13 +10,33 @@ const RateSong = ({ onAdd }) => {
   const [song, setTitle] = useState("");
   const [ratings, setRatings] = useState([]);
   const [songs, setSongs] = useState([]);
+  const [user_id, setId] = useState('')
+  const [username, setUsername] = useState('')
+
+  const getData = async key => {
+    try {
+      const data = await AsyncStorage.getItem(key);
+      if (data !== null) {
+        console.log(data);
+        return data;
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getusername = async () => {
+    const data1 = await getData('username')
+    const data2 = await getData('user_id')
+    setUsername(data1)
+    setId(data2)
+  }
 
 
-  const userid = AsyncStorage.getItem('user_id');
-  const username = AsyncStorage.getItem('username');
 
   useEffect(() => {
     refreshSongs();
+    getusername();
   }, []);
 
   const refreshSongs = () => {
@@ -33,11 +53,11 @@ const RateSong = ({ onAdd }) => {
   const onSubmit = (e) => {
     e.preventDefault();
     let lst = []
-    lst = ratings.filter(item => item.username == userid);
+    lst = ratings.filter(item => item.username == username);
     lst = lst.filter(item => item.song == song);
     if (lst.length == 0) {
       let item = {
-        'username' : 1,
+        'username' : user_id,
         'song' : song,
         'rating' : rating};   
       axios.post("http://localhost:8000/api/ratings/", item)
@@ -77,6 +97,7 @@ const RateSong = ({ onAdd }) => {
         <TextInput 
           style={styles.input}
           keyboardType="phone-pad"
+          onChangeText = {rating => setRating(rating)}
           placeholder="Enter rating between 1 and 5" />
         <Button
           onPress={onSubmit}
