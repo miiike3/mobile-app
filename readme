@@ -1,11 +1,3 @@
-Homework 4 Part 1:
-django backend link: https://mandm-reviews.herokuapp.com/api/
-firebase frontend link: https://mandm-reviews.web.app/startpage
-firebase frontend link to go straight to the main function of the app with a default user: https://mandm-reviews.web.app/addsong
-You can use an already made user with the username: testuser and password: spaceship4 if you want for testing.  On the startpage there are links to register and login.  Hitting register will bring you to the page to make a new user, entering a username and password and hitting submit will add a new user to the database and then bring you to the login page, where entering a username and password and hitting submit will bring you to the addsong page, allowing you to add songs, delete songs, edit the name of artists with songs, and rate songs, all of the changes will be saved to the database online.
-Limitations of app:  The sites are stable and work for adding new songs, editing artists names, deleting songs, adding new users, logging in, and adding new ratings, however based on the bugs of the previous homework submission, on the site you are able to submit as many reviews as you wish for each user, the average rating does not update unless the database is restarted even when new ratings are added, you are unable to edit the name of songs only artists are editable.
-
-
 To access the Mobile app:
 
 First, download the files. Open the terminal and begin a virtual environment. Navigate to the folder and navigate to the Backend directory. Install Django into this virtual environment. You will also need to install the packages djangorestframework,  django-cors-headers, django-rest-auth, django-allauth, djangorestframework_simplejwt. Install all of these with pip and begin running the server with python3 manage.py runserver.
